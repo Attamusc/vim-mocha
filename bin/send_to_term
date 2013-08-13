@@ -1,14 +1,11 @@
 #!/usr/bin/osascript
 
 on run argv
-  tell application "Terminal"
-    if (count of windows) is 0 then
-      do script argv
-    else
-      do script argv in window 1
-    end if
-
+  tell application "iTerm"
     activate
+    tell current session of current terminal
+      write text "" & argv
+    end tell
   end tell
 
   tell application "MacVim"
